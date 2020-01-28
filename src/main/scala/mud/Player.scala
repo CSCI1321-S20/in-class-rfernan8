@@ -3,10 +3,11 @@ package mud
 class Player(val name: String, private var inventory: List[Item], private var location: Room) {
 
     val movement_commands = List("north","n","south","s","east","e","west","w")
-    val print_commands = List("inv","inventory")
+    val print_commands = List("inv","inventory","look","help")
     init()
     
     def init(): Unit = {
+        print_commands()
         println(location.description())
     }
 
@@ -15,6 +16,9 @@ class Player(val name: String, private var inventory: List[Item], private var lo
             move(command)
         }
         else if (print_commands.contains(command)){
+            if (command == "help") printCommands()
+            else if (command == "look") println(location.description())
+            ???
             println(inventoryListing())
         }
         else if (command.contains("get")){
@@ -62,4 +66,17 @@ class Player(val name: String, private var inventory: List[Item], private var lo
             }
             else println("No exit in that direction.")
     }
+
+    def printCommands(): Unit = {
+            println("""----------------- Action: Command ------------------
+                        Move: north (n), south (s), east (e), west (w)
+                        Reprint room description: look
+                        See your inventory: inv/inventory
+                        Pick up an item: get 'item name'
+                        Drop an item: drop 'item name'
+                        Quit game: exit
+                        See all commands: help
+                      -----------------------------------------------------""")
+    }
+
 }

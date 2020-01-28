@@ -1,0 +1,18 @@
+3 
+Earth
+This is Earth.
+axe
+Kills more than just trees.
+sword
+A blade with a burning edge.
+-1,-1,1,2
+Mars
+This is Mars.
+dagger
+They won't see it coming.
+-1,-1,-1,0
+Venus
+This is Venus.
+bat
+Not the sharpest, but just as lethal.
+-1,-1,0,-1

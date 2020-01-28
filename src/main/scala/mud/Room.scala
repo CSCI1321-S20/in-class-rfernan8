@@ -3,7 +3,16 @@ package mud
 class Room(val name: String, val desc: String, private var items: List[Item], private val exits: Array[Int]) {
 
   val directions = List(0,1,2,3) // north-0, south-1, east-2, west-3
-  // val exit_arr = 
+  val exit_arr = Array[String](exits.length)
+  
+  for (x <- exits) {
+  }
+  
+  
+  
+  
+  
+  //)
 
   def description(): String = name + "\n" + desc + "\n" + "Exits: " + exits.mkString(",") + "\n" + "Items: " + items.mkString(",") // exits is currently ints
 

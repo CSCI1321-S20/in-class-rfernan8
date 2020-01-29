@@ -1,6 +1,7 @@
 3 
 Earth
 This is Earth.
+2
 axe
 Kills more than just trees.
 sword
@@ -8,11 +9,13 @@ A blade with a burning edge.
 -1,-1,1,2
 Mars
 This is Mars.
+1
 dagger
 They won't see it coming.
 -1,-1,-1,0
 Venus
 This is Venus.
+1
 bat
 Not the sharpest, but just as lethal.
 -1,-1,0,-1

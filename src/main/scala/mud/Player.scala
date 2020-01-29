@@ -7,7 +7,7 @@ class Player(val name: String, private var inventory: List[Item], private var lo
     init()
     
     def init(): Unit = {
-        print_commands()
+        printCommands()
         println(location.description())
     }
 
@@ -18,14 +18,14 @@ class Player(val name: String, private var inventory: List[Item], private var lo
         else if (print_commands.contains(command)){
             if (command == "help") printCommands()
             else if (command == "look") println(location.description())
-            ???
-            println(inventoryListing())
+            else println(inventoryListing())
         }
         else if (command.contains("get")){
-            addToInventory(command.substring(4,(command.length))) 
+            val item_name = command.substring(4,(command.length)).trim()
+            addToInventory(location.getItem(item_name))
         }
         else if (command.contains("drop")){
-            getFromInventory(command.substring(5,(command.length)))
+            getFromInventory(command.substring(5,(command.length)).trim())
 
         }
         else println("Not a valid command.")
@@ -37,46 +37,46 @@ class Player(val name: String, private var inventory: List[Item], private var lo
         case Some(item) =>
             inventory = inventory.filter(_ != item)
             location.dropItem(item)
-            println(itemName ++ " was dropped.")
+            println(item.name + " was dropped.")
         case None => 
             println(itemName + " is not in your inventory.")
         }
     }
 
-    def addToInventory(itemName: Item): Unit = {
-        if (location.getItem(itemName) != None){
-            inventory ::= itemName
-            println(itemName + " was added to your inventory.")
+    def addToInventory(itemName: Option[Item]): Unit = {
+        if (itemName != None) {
+        inventory ::= itemName.get
+        println(itemName.get.name + " was added to your inventory.")
         }
-        else {
-            println("Item is not in this room.")
-        }
+        else println("That item is not on this planet.")
     }
 
-    def inventoryListing(): String = {
+    def inventoryListing(): Unit = {
         println("Inventory:")
-        for (x <- inventory) println("\t" + x.name + " - " + x.desc)
+        for (x <- 0 to inventory.length-1) {
+            println("\t" + inventory(x).name + " - " + inventory(x).desc)
+        }
     }
 
     def move(dir: String): Unit = {
         var next_room = location.getExit((movement_commands.indexOf(dir))/2)
             if (next_room != None){
-                location = next_room
+                location = next_room.get
                 println(location.description())
             }
             else println("No exit in that direction.")
     }
 
     def printCommands(): Unit = {
-            println("""----------------- Action: Command ------------------
-                        Move: north (n), south (s), east (e), west (w)
-                        Reprint room description: look
-                        See your inventory: inv/inventory
-                        Pick up an item: get 'item name'
-                        Drop an item: drop 'item name'
-                        Quit game: exit
-                        See all commands: help
-                      -----------------------------------------------------""")
+    println("""----------------- Action: Command -----------------------
+    Move: north (n), south (s), east (e), west (w)
+    Reprint room description: look
+    See your inventory: inv/inventory
+    Pick up an item: get 'item name'
+    Drop an item: drop 'item name'
+    Quit game: exit
+    See all commands: help
+---------------------------------------------------------""")
     }
 
 }

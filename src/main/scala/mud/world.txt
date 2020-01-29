@@ -1,0 +1,21 @@
+3
+Earth
+Welcome home Human! Grab a weapon. We have a rocket ready to take you to across the Milky Way!   
+2
+Axe
+Kills more than just trees.
+Bat
+Not the sharpest, but just as lethal.
+-1,-1,1,2
+Mars
+Home of the Martians. Caution! They are known to be aggressive if taunted.
+1
+Dagger
+They won't see it coming.
+-1,-1,-1,0
+Venus
+Whew, it's hot in here! Don't take too long to explore, you might melt.
+1
+Sword
+A blade with a burning edge.
+-1,-1,0,-1
